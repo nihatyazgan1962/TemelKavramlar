@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Matematik Temel Kavramlar</string>
+    <string name="title_activity_main">Matematik Temel Kavramlar</string>
+    <string name="package_name">com.kavramlar.dortislem</string>
+    <string name="custom_url_scheme">com.kavramlar.dortislem</string>
+</resources>

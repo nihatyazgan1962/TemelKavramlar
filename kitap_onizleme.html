@@ -1,0 +1,1189 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matematiğin Dili: 4 Temel İşlem Kavram Kitabı (10 Sayfa)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --toplama-primary: #059669;
+      --toplama-light: #d1fae5;
+      --toplama-border: #a7f3d0;
+      
+      --cikarma-primary: #e11d48;
+      --cikarma-light: #ffe4e6;
+      --cikarma-border: #fecdd3;
+      
+      --carpma-primary: #7c3aed;
+      --carpma-light: #ede9fe;
+      --carpma-border: #ddd6fe;
+      
+      --bolme-primary: #d97706;
+      --bolme-light: #fef3c7;
+      --bolme-border: #fde68a;
+
+      --bg-slate: #f8fafc;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #f1f5f9;
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Üst Başlık & Kontroller */
+    header {
+      background: white;
+      padding: 24px 32px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      color: #334155;
+    }
+
+    .nav-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .nav-btn.active {
+      background: #0f172a;
+      color: white;
+      border-color: #0f172a;
+    }
+
+    .view-switch-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      padding: 8px 16px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .action-btn:hover {
+      background: #2563eb;
+    }
+
+    .audio-badge-btn {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: all 0.2s ease;
+      color: #1e293b;
+    }
+
+    .audio-badge-btn:hover {
+      background: #f1f5f9;
+      transform: scale(1.04);
+    }
+
+    .audio-badge-btn.playing {
+      background: #ef4444 !important;
+      color: white !important;
+      border-color: #dc2626 !important;
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Kitap Sayfası Stili */
+    .book-page {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px -5px rgba(0,0,0,0.07);
+      margin-bottom: 32px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+
+    .page-header {
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .page-number-pill {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .theme-toplama .page-header { background: var(--toplama-light); border-color: var(--toplama-border); }
+    .theme-toplama .page-number-pill { background: white; color: var(--toplama-primary); }
+    .theme-cikarma .page-header { background: var(--cikarma-light); border-color: var(--cikarma-border); }
+    .theme-cikarma .page-number-pill { background: white; color: var(--cikarma-primary); }
+    .theme-carpma .page-header { background: var(--carpma-light); border-color: var(--carpma-border); }
+    .theme-carpma .page-number-pill { background: white; color: var(--carpma-primary); }
+    .theme-bolme .page-header { background: var(--bolme-light); border-color: var(--bolme-border); }
+    .theme-bolme .page-number-pill { background: white; color: var(--bolme-primary); }
+    .theme-intro .page-header { background: #e0f2fe; border-color: #bae6fd; }
+    .theme-bridge .page-header { background: #fdf4ff; border-color: #f5d0fe; }
+
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .page-content {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Kavram Hapları */
+    .concepts-strip {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .concept-tag {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theme-toplama .concept-tag { background: var(--toplama-light); color: var(--toplama-primary); border: 1px solid var(--toplama-border); }
+    .theme-cikarma .concept-tag { background: var(--cikarma-light); color: var(--cikarma-primary); border: 1px solid var(--cikarma-border); }
+    .theme-carpma .concept-tag { background: var(--carpma-light); color: var(--carpma-primary); border: 1px solid var(--carpma-border); }
+    .theme-bolme .concept-tag { background: var(--bolme-light); color: var(--bolme-primary); border: 1px solid var(--bolme-border); }
+
+    /* Kavram Açıklama Kutuları */
+    .concept-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .concept-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+
+    .concept-card h4 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .concept-card p {
+      font-size: 14px;
+      color: #334155;
+    }
+
+    /* Görsel Senaryo Alanı (Mockup Panosu) */
+    .scenario-box {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .scenario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scenario-badge {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+    }
+
+    .visual-stage {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .visual-element-group {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .item-cluster {
+      font-size: 32px;
+      letter-spacing: 4px;
+      padding: 8px 16px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    .stage-arrow {
+      font-size: 28px;
+      color: #94a3b8;
+      font-weight: 800;
+    }
+
+    .scenario-dialogue {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 12px 16px;
+      border-radius: 0 12px 12px 0;
+      font-size: 14px;
+      color: #1e3a8a;
+    }
+
+    /* Somut Materyal Bölümü */
+    .material-section {
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fde68a;
+      border-radius: 18px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .material-icon {
+      font-size: 32px;
+      background: white;
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(217, 119, 6, 0.15);
+      flex-shrink: 0;
+    }
+
+    .material-details h4 {
+      font-size: 16px;
+      color: #92400e;
+      margin-bottom: 4px;
+    }
+
+    .material-details p {
+      font-size: 13.5px;
+      color: #78350f;
+    }
+
+    /* Baskı için ayarlar */
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+      }
+      header, .nav-tabs, .view-switch-btns {
+        display: none !important;
+      }
+      .book-page {
+        page-break-after: always;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Üst Başlık ve Gezinme -->
+  <header>
+    <div class="header-top">
+      <div>
+        <h1>📘 Matematiğin Dili: 4 Temel İşlem</h1>
+        <p class="header-subtitle">Özel Gereksinim Desteği Odaklı, Evrensel Tasarımlı 10 Sayfalık Kavram Kitabı</p>
+      </div>
+      <div class="view-switch-btns">
+        <button class="action-btn" id="voiceBtn" style="background:#10b981;" onclick="toggleReadActivePage()">🔊 Sesli Oku</button>
+        <button class="action-btn" onclick="window.print()">🖨️ Yazdır / PDF Kaydet</button>
+      </div>
+    </div>
+    <div class="nav-tabs" id="pageTabs">
+      <button class="nav-btn active" onclick="filterPage('all')">Tüm Sayfalar (1-10)</button>
+      <button class="nav-btn" onclick="filterPage('page-1')">Sayfa 1: Giriş</button>
+      <button class="nav-btn" onclick="filterPage('page-2')">Sayfa 2: Toplama (I)</button>
+      <button class="nav-btn" onclick="filterPage('page-3')">Sayfa 3: Toplama (II)</button>
+      <button class="nav-btn" onclick="filterPage('page-4')">Sayfa 4: Çıkarma (I)</button>
+      <button class="nav-btn" onclick="filterPage('page-5')">Sayfa 5: Çıkarma (II)</button>
+      <button class="nav-btn" onclick="filterPage('page-6')">Sayfa 6: Çarpma (I)</button>
+      <button class="nav-btn" onclick="filterPage('page-7')">Sayfa 7: Çarpma (II)</button>
+      <button class="nav-btn" onclick="filterPage('page-8')">Sayfa 8: Bölme (I)</button>
+      <button class="nav-btn" onclick="filterPage('page-9')">Sayfa 9: Bölme (II)</button>
+      <button class="nav-btn" onclick="filterPage('page-10')">Sayfa 10: Kavram Köprüsü</button>
+    </div>
+  </header>
+
+  <!-- SAYFA 1 -->
+  <div class="book-page theme-intro" id="page-1">
+    <div class="page-header">
+      <div class="page-title">🔍 Merhaba Kavram Dedektifi!</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-1', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 1 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="scenario-dialogue" style="font-size: 16px; line-height: 1.8;">
+        <strong>Sayılar Aslında Konuşur!</strong><br>
+        Bir sayının büyüdüğünü, küçüldüğünü ya da arkadaşlarıyla el ele verdiğini anlamak için bazı sihirli sözcükler vardır. Bu kitapta o sözcüklerin izini süreceğiz.
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card" style="border-top: 4px solid var(--toplama-primary);">
+          <h4>🟢 Toplama Dünyası</h4>
+          <p>Katılma, eklenme, bir araya gelme, artma ve çoğalma sözcüklerinin dünyası!</p>
+        </div>
+        <div class="concept-card" style="border-top: 4px solid var(--cikarma-primary);">
+          <h4>🔴 Çıkarma Dünyası</h4>
+          <p>Ayrılma, uzaklaşma, harcama, eksilme, azalma ve aradaki farkın dünyası!</p>
+        </div>
+        <div class="concept-card" style="border-top: 4px solid var(--carpma-primary);">
+          <h4>🟣 Çarpma Dünyası</h4>
+          <p>Eşit grupların, tekrarlı toplamanın, katı olmanın ve hızlı büyümenin dünyası!</p>
+        </div>
+        <div class="concept-card" style="border-top: 4px solid var(--bolme-primary);">
+          <h4>🟠 Bölme Dünyası</h4>
+          <p>Adil paylaşımın, eşit dağıtmanın, gruplara ayırmanın ve kalan parçaların dünyası!</p>
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">💡</div>
+        <div class="material-details">
+          <h4>Kitap Nasıl Takip Edilir? (3 Adımlı Sezgisel Yol)</h4>
+          <p><strong>1. Sözcüğü Gör:</strong> Kavram kutusundaki kelimeyi hisset.<br>
+             <strong>2. Sahneyi İncele:</strong> Resimde kim kime katılıyor, kim ayrılıyor?<br>
+             <strong>3. Somut Materyale Dokun:</strong> Sayfa altındaki materyalle parmaklarınla canlandır!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 2 -->
+  <div class="book-page theme-toplama" id="page-2">
+    <div class="page-header">
+      <div class="page-title">🟢 Toplama Dünyası: Birlikte Daha Çok!</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-2', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 2 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">➕ KATILMA</span>
+        <span class="concept-tag">➕ DAHİL OLMA</span>
+        <span class="concept-tag">➕ EKLENME</span>
+        <span class="concept-tag">➕ BİR ARAYA GELME</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>🐾 Katılma / Dahil Olma</h4>
+          <p>Bir grubun yanına yeni bir arkadaşın gelmesi. "3 kedimiz vardı, 2 kedi daha aramıza katıldı!"</p>
+        </div>
+        <div class="concept-card">
+          <h4>🍎 Eklenme</h4>
+          <p>Bir sepetin veya tabağın içine dışarıdan yeni nesnelerin bırakılması.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne 1: Parktaki Kediler</span>
+          <strong>Katılma Modeli</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🐱 🐱 🐱</div>
+            <small>Parktaki 3 Kedi</small>
+          </div>
+          <div class="stage-arrow">➕</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🐱 🐱 💨</div>
+            <small>Koşup Katılan 2 Kedi</small>
+          </div>
+          <div class="stage-arrow">➔</div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="border-color: var(--toplama-primary); background: #ecfdf5;">🐱 🐱 🐱 🐱 🐱</div>
+            <small><strong>Artık 5 Kedi Oldular!</strong></small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Kavram Dedektifi Sorusu:</strong> "Yeni kediler ne yaptı? Gruba <em>katıldı</em>. Sayı azaldı mı yoksa kalabalıklaştı mı?"
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">🖐️</div>
+        <div class="material-details">
+          <h4>Dokun ve Dene: "Avucuma Katıl" Oyunu</h4>
+          <p>Çocuğun açık sol avucuna 3 fasulye koyun. Sağ elinizden 2 fasulye daha bırakırken yüksek sesle söyleyin: <em>"Avucuna 2 fasulye daha katıldı / eklendi!"</em> Parmaklarını kapatıp sıkarak çoğalmayı hissetsin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 3 -->
+  <div class="book-page theme-toplama" id="page-3">
+    <div class="page-header">
+      <div class="page-title">🟢 Toplama Dünyası: Büyüyen ve Yükselen Sayılar</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-3', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 3 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">📈 ARTMA</span>
+        <span class="concept-tag">🌱 ÇOĞALMA</span>
+        <span class="concept-tag">🪜 YÜKSELME</span>
+        <span class="concept-tag">🎯 TOPLAM (HEPSİ BİRDEN)</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>📈 Artma ve Çoğalma</h4>
+          <p>Miktarın öncekinden daha bol, daha kalabalık hale gelmesi.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🎯 Toplam</h4>
+          <p>Bütün parçaları bir araya getirdiğimizde masada gördüğümüz en son büyük miktar.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne 2: Akvaryumdaki Balıklar</span>
+          <strong>Çoğalma ve Toplam Miktar</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🐠 🐠 🐠 🐠</div>
+            <small>Akvaryumda 4 Turuncu Balık</small>
+          </div>
+          <div class="stage-arrow">💧</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🐟 🐟 🐟</div>
+            <small>Eklenen 3 Mavi Balık</small>
+          </div>
+          <div class="stage-arrow">➔</div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="background: #f0fdf4; border-color: #34d399;">🐠 🐠 🐠 🐠 🐟 🐟 🐟</div>
+            <small><strong>Toplam: 7 Balık</strong></small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Kavram Sözü:</strong> "Akvaryuma yeni balıklar gelince balık sayısı <strong>çoğaldı</strong>. Masada gördüğümüz nihai sayıya <strong>TOPLAM</strong> diyoruz."
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">📏</div>
+        <div class="material-details">
+          <h4>Sayfanın Somut Materyali: "Sürgülü Toplama Şeridi"</h4>
+          <p>1'den 10'a kadar numaralandırılmış karton şerit. Üzerinde kayan minik bir pencere. Pencereyi 4'e koyun, 3 adım sağa kaydırın. Sağa gittikçe sayının <strong>arttığını ve yükseldiğini</strong> parmak hareketiyle deneyimleyin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 4 -->
+  <div class="book-page theme-cikarma" id="page-4">
+    <div class="page-header">
+      <div class="page-title">🔴 Çıkarma Dünyası: Vedalaşan ve Ayrılan Parçalar</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-4', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 4 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">➖ AYRILMA</span>
+        <span class="concept-tag">➖ UZAKLAŞMA</span>
+        <span class="concept-tag">➖ GİTME / UÇMA</span>
+        <span class="concept-tag">➖ HARCAMA</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>🕊️ Ayrılma ve Gitme</h4>
+          <p>Birlikte duran gruptan bazılarının başka bir yöne doğru hareket edip gitmesi.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🪙 Harcama ve Tüketme</h4>
+          <p>Kullandıkça malzemenin ya da paranın elimizden çıkması.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne: Ağaçtaki Kuşlar</span>
+          <strong>Ayrılma Modeli</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🕊️ 🕊️ 🕊️ 🕊️ 🕊️</div>
+            <small>Dalda 5 Kuş Vardı</small>
+          </div>
+          <div class="stage-arrow">👋</div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="opacity: 0.6;">🕊️ 🕊️ 💨</div>
+            <small>2 Kuş Uçup Gitti (Ayrıldı)</small>
+          </div>
+          <div class="stage-arrow">➔</div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="border-color: var(--cikarma-primary); background: #fff1f2;">🕊️ 🕊️ 🕊️</div>
+            <small><strong>Dalda Kalan 3 Kuş</strong></small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Kavram Sorusu:</strong> "Kuşlar nereye gitti? Gruptan <em>ayrıldılar</em> ve uzaklaştılar. Ağaçtakiler azaldı mı?"
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">🧲</div>
+        <div class="material-details">
+          <h4>Beden Diliyle Kodlama (Kinestetik)</h4>
+          <p>İki elinizi yumruk yapıp yan yana getirin: <em>"Birlikteyiz."</em> Sonra sağ yumruğunuzu arkanıza saklayın: <em>"Ayrıldı ve gitti!"</em> Önünüzde kalan eli göstererek azalmayı gözlemleyin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 5 -->
+  <div class="book-page theme-cikarma" id="page-5">
+    <div class="page-header">
+      <div class="page-title">🔴 Çıkarma Dünyası: Eksilme, Azalma ve Geriye Kalan Fark</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-5', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 5 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">📉 EKSİLME</span>
+        <span class="concept-tag">🔻 AZALMA</span>
+        <span class="concept-tag">⚖️ FARK</span>
+        <span class="concept-tag">📦 GERİYE KALAN</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>🍉 Eksilme</h4>
+          <p>Bir şeyin yenmesi, kaybolması, kırılması veya çıkarılmasıyla eksik kalması.</p>
+        </div>
+        <div class="concept-card">
+          <h4>⚖️ Fark</h4>
+          <p>İki grup arasındaki boy veya miktar açıklığı. "Biri diğerinden ne kadar eksik ya da fazla?"</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne: Karpuz Dilimleri & Blok Kuleleri</span>
+          <strong>Eksilme ve Kalan</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🍉 🍉 🍉 🍉 🍉 🍉</div>
+            <small>Tabakta 6 Karpuz Dilimi</small>
+          </div>
+          <div class="stage-arrow">😋</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">❌ ❌</div>
+            <small>2 Dilim Yendi (Eksildi)</small>
+          </div>
+          <div class="stage-arrow">➔</div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="background: #fff1f2; border-color: #fb7185;">🍉 🍉 🍉 🍉</div>
+            <small><strong>Geriye Kalan: 4 Dilim</strong></small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Kavram İfadesi:</strong> "Karpuzları yiyince miktarı <strong>azaldı</strong>. Tabakta hala duran dilimlere <strong>geriye kalan</strong> diyoruz."
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">📎</div>
+        <div class="material-details">
+          <h4>Sayfanın Somut Materyali: "Eksilen Mandal İpi"</h4>
+          <p>Bir ipe 6 mandal takın. Çocuğa 2 mandalı söktürün. Mandallar söküldükçe ipin boşaldığını, geriye kalanların <strong>azaldığını</strong> ve aradaki boşluğun <strong>fark</strong> olduğunu görsün.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 6 -->
+  <div class="book-page theme-carpma" id="page-6">
+    <div class="page-header">
+      <div class="page-title">🟣 Çarpma Dünyası: Eşit Grupların Gücü</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-6', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 6 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">📦 EŞİT GRUP</span>
+        <span class="concept-tag">🔄 TEKRARLI TOPLAMA</span>
+        <span class="concept-tag">🏷️ TANE</span>
+        <span class="concept-tag">⏱️ KERE / DEFA</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>📦 Eşit Grup</h4>
+          <p>Her sepetin içinde TAM OLARAK AYNI SAYIDA nesne bulunması kuralı.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🔄 Tekrarlı Toplama</h4>
+          <p>"2 elma, bir 2 elma daha, bir 2 elma daha..." demek yerine kısaca "3 kere 2" demek.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne: Çiçekli Saksılar</span>
+          <strong>Eşit Grup ve Tane Modeli</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🌷🌷</div>
+            <small>1. Saksı (2 Çiçek)</small>
+          </div>
+          <div class="stage-arrow">➕</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🌷🌷</div>
+            <small>2. Saksı (2 Çiçek)</small>
+          </div>
+          <div class="stage-arrow">➕</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🌷🌷</div>
+            <small>3. Saksı (2 Çiçek)</small>
+          </div>
+          <div class="stage-arrow">➔</div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="background: var(--carpma-light); border-color: var(--carpma-primary);">3 × 2 = 6</div>
+            <small><strong>3 Tane 2 = 6 Çiçek!</strong></small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Önemli Kural:</strong> "Her saksıda eşit sayıda çiçek var mı? Evet! O zaman çarpmayı çağırabiliriz: 3 kere 2!"
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">🪺</div>
+        <div class="material-details">
+          <h4>Dokun ve Dene: Yumurta Kolisi veya Buz Kalıbı</h4>
+          <p>Buz kalıbının 3 gözüne 2'şer adet fasulye koydurun. Her gözün bir "grup" olduğunu, içindekilerin "tane" olduğunu elini içine sokarak hissetsin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 7 -->
+  <div class="book-page theme-carpma" id="page-7">
+    <div class="page-header">
+      <div class="page-title">🟣 Çarpma Dünyası: Katlanarak Büyüme ve Çikolata Izgarası</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-7', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 7 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">⏫ KATI OLMA</span>
+        <span class="concept-tag">🧇 IZGARA / DİZİ (GRID)</span>
+        <span class="concept-tag">🚀 KATLANARAK BÜYÜME</span>
+        <span class="concept-tag">✨ ÇARPIM</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>⏫ Katı Olma</h4>
+          <p>Bir miktarın 2 katına ya da 3 katına çıkarak hızla devleşmesi.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🧇 Izgara (Satır ve Sütun)</h4>
+          <p>Çikolata tabletleri gibi düzenli sıralarla hızlıca sayma yöntemi.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne: Çikolata Tableti</span>
+          <strong>Izgara (Grid) Modeli</strong>
+        </div>
+        <div class="visual-stage">
+          <div style="display: grid; grid-template-columns: repeat(4, 45px); gap: 6px; background: #78350f; padding: 12px; border-radius: 12px;">
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+            <div style="background: #92400e; height: 35px; border-radius: 6px; color: white; display:flex; align-items:center; justify-content:center; font-size:12px;">🍫</div>
+          </div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="font-size: 18px; font-weight:700; color:var(--carpma-primary);">
+              3 Sıra × 4 Sütun = 12 Kare!
+            </div>
+            <small>Tek tek saymak yerine çarparak bulduk!</small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Kavram Dedektifi Keşfi:</strong> "3 sıra halinde dizilmiş 4 kare çikolata. Çarpma sayesinde roket gibi saydık!"
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">🧱</div>
+        <div class="material-details">
+          <h4>Sayfanın Somut Materyali: Lego / Blok Kuleleri</h4>
+          <p>2 bloklu bir kule yapın. "Bunun 3 katını yapalım!" diyerek yanına 3 tane 2'li kule koydurun. Boyun ve miktarın <strong>katlandığını</strong> görsün.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 8 -->
+  <div class="book-page theme-bolme" id="page-8">
+    <div class="page-header">
+      <div class="page-title">🟠 Bölme Dünyası: Adil ve Eşit Paylaşım</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-8', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 8 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">🤝 EŞİT PAYLAŞIM</span>
+        <span class="concept-tag">⚖️ ADİL DAĞITMA</span>
+        <span class="concept-tag">🥧 BÖLÜŞTÜRME</span>
+        <span class="concept-tag">🎁 PAY</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>🤝 Eşit Paylaşım</h4>
+          <p>Kimseye haksızlık yapmadan herkese tam olarak aynı sayıda vermek.</p>
+        </div>
+        <div class="concept-card">
+          <h4>🎁 Pay</h4>
+          <p>Dağıtımın sonunda bir kişinin eline geçen kendi hissesi.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne: Sincaplar ve Fındıklar</span>
+          <strong>Adil Paylaşım Modeli</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🌰 🌰 🌰 🌰 🌰 🌰</div>
+            <small>6 Fındık</small>
+          </div>
+          <div class="stage-arrow">÷ 2 🐿️</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🐿️ ➔ 🌰 🌰 🌰</div>
+            <small>1. Sincabın Payı: 3</small>
+          </div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🐿️ ➔ 🌰 🌰 🌰</div>
+            <small>2. Sincabın Payı: 3</small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Adalet Kuralı:</strong> "Biri 4, diğeri 2 alsa bu bölme olur muydu? Hayır! Bölme her zaman <strong>eşit ve adil</strong> pay ister."
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">🍽️</div>
+        <div class="material-details">
+          <h4>Dokun ve Dene: "Bir Sana, Bir Bana" Tepsisi</h4>
+          <p>Masaya 6 kurabiye veya ceviz koyun. İki ayrı tabağa sırayla birer birer dağıttırın: <em>"Bir sana, bir bana."</em> Payların eşitliğini sayarak doğrulayın.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 9 -->
+  <div class="book-page theme-bolme" id="page-9">
+    <div class="page-header">
+      <div class="page-title">🟠 Bölme Dünyası: Gruplara Ayırma ve Kalan Parça</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-9', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 9 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="concepts-strip">
+        <span class="concept-tag">📦 GRUPLAMA</span>
+        <span class="concept-tag">🔄 TEKRARLI ÇIKARMA</span>
+        <span class="concept-tag">🧩 PARÇALAMA</span>
+        <span class="concept-tag">⚠️ KALAN (ARTAN)</span>
+      </div>
+
+      <div class="concept-cards-grid">
+        <div class="concept-card">
+          <h4>🔄 Tekrarlı Çıkarma</h4>
+          <p>Masanın üzerindeki nesneler bitene kadar aynı miktarı tekrar tekrar eksiltmek.</p>
+        </div>
+        <div class="concept-card">
+          <h4>⚠️ Kalan (Artan)</h4>
+          <p>Herkes eşit payını aldıktan sonra, eşit bölünemediği için masada artan parça.</p>
+        </div>
+      </div>
+
+      <div class="scenario-box">
+        <div class="scenario-header">
+          <span class="scenario-badge">Görsel Sahne: Düğmeleri Paketleme & Havuçlar</span>
+          <strong>Gruplama ve Kalan</strong>
+        </div>
+        <div class="visual-stage">
+          <div class="visual-element-group">
+            <div class="item-cluster">🥕 🥕 🥕 🥕 🥕 🥕 🥕</div>
+            <small>7 Havuç (3 Tavşan İçin)</small>
+          </div>
+          <div class="stage-arrow">➔</div>
+          <div class="visual-element-group">
+            <div class="item-cluster">🐰: 🥕🥕 | 🐰: 🥕🥕 | 🐰: 🥕🥕</div>
+            <small>Her Tavşana 2 Havuç Düştü</small>
+          </div>
+          <div class="visual-element-group">
+            <div class="item-cluster" style="background:#fffbeb; border:2px solid #f59e0b;">🥕</div>
+            <small><strong>1 Kalan Havuç!</strong></small>
+          </div>
+        </div>
+        <div class="scenario-dialogue">
+          💬 <strong>Kavram Dedektifi Notu:</strong> "Masada 1 havuç kaldı! Çünkü bunu kime versek diğerleri üzülürdü. Bu parçaya <strong>KALAN</strong> diyoruz."
+        </div>
+      </div>
+
+      <div class="material-section">
+        <div class="material-icon">🧺</div>
+        <div class="material-details">
+          <h4>Sayfanın Somut Materyali: "Kese Kağıdı ve Düğmeler"</h4>
+          <p>8 düğmeyi ikişerli torbalara paylaştırın. "Kaç torba doldu? 4 torba!" Bölmenin aynı zamanda kaç grup çıktığını bulmak olduğunu görsün.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAYFA 10 -->
+  <div class="book-page theme-bridge" id="page-10">
+    <div class="page-header">
+      <div class="page-title">🌟 Büyük Kavram Köprüsü ve Dedektif Atölyesi</div>
+      <div style="display:flex; gap:8px; align-items:center;"><button class="audio-badge-btn" onclick="speakPage('page-10', this)">🔊 Dinle</button><div class="page-number-pill">SAYFA 10 / 10</div></div>
+    </div>
+    <div class="page-content">
+      <div class="scenario-dialogue" style="font-size: 15px;">
+        <strong>4 Kardeş İşlemin Büyük Sırrı:</strong><br>
+        Toplama ve Çıkarma birbirinin zıddıdır! Çarpma, toplamanın hızlı koşan ikizidir; Bölme ise çıkarmanın adil paylaşan ikizidir!
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; background: white; border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0;">
+          <thead>
+            <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+              <th style="padding: 12px 16px;">İşlem</th>
+              <th style="padding: 12px 16px;">Gizli Gücü</th>
+              <th style="padding: 12px 16px;">Sihirli Kavram Sözcükleri</th>
+              <th style="padding: 12px 16px;">Zıt İkizi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+              <td style="padding: 12px 16px; font-weight: 700; color: var(--toplama-primary);">🟢 Toplama (+)</td>
+              <td style="padding: 12px 16px;">Büyütür / Birleştirir</td>
+              <td style="padding: 12px 16px;">Katılma, Dahil Olma, Eklenme, Artma, Çoğalma, Toplam</td>
+              <td style="padding: 12px 16px; color: var(--cikarma-primary); font-weight: 700;">🔴 Çıkarma</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+              <td style="padding: 12px 16px; font-weight: 700; color: var(--cikarma-primary);">🔴 Çıkarma (-)</td>
+              <td style="padding: 12px 16px;">Küçültür / Ayırır</td>
+              <td style="padding: 12px 16px;">Ayrılma, Gitme, Eksilme, Azalma, Harcama, Fark, Kalan</td>
+              <td style="padding: 12px 16px; color: var(--toplama-primary); font-weight: 700;">🟢 Toplama</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+              <td style="padding: 12px 16px; font-weight: 700; color: var(--carpma-primary);">🟣 Çarpma (×)</td>
+              <td style="padding: 12px 16px;">Hızlı Katlar</td>
+              <td style="padding: 12px 16px;">Eşit Grup, Katı Olma, Katlanma, Tane, Kere, Çarpım</td>
+              <td style="padding: 12px 16px; color: var(--bolme-primary); font-weight: 700;">🟠 Bölme</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; font-weight: 700; color: var(--bolme-primary);">🟠 Bölme (÷)</td>
+              <td style="padding: 12px 16px;">Eşit Paylaştırır</td>
+              <td style="padding: 12px 16px;">Eşit Paylaşım, Bölüştürme, Üleştirme, Gruplama, Kalan</td>
+              <td style="padding: 12px 16px; color: var(--carpma-primary); font-weight: 700;">🟣 Çarpma</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="material-section" style="background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%); border-color: #f0abfc;">
+        <div class="material-icon" style="box-shadow: 0 4px 10px rgba(192, 38, 211, 0.15);">🎓</div>
+        <div class="material-details">
+          <h4 style="color: #86198f;">Kes-Kullan: Kavram Dedektifi Karar Çarkı</h4>
+          <p style="color: #701a75;">Kitabın arkasında döner bir ok bulunur. Çocuğa hikaye okunur (Örn: <em>"Sepetteki elmalar azaldı"</em>). Çocuk parmağıyla oku <strong>Çıkarma (-)</strong> dünyasına çevirir. Tebrik kartıyla ödüllendirilir!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentFilteredPage = 'all';
+  let currentUtterance = null;
+  let isSpeaking = false;
+
+  function filterPage(pageId) {
+    currentFilteredPage = pageId;
+    stopSpeech();
+    const buttons = document.querySelectorAll('.nav-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const pages = document.querySelectorAll('.book-page');
+    if (pageId === 'all') {
+      pages.forEach(p => p.style.display = 'block');
+    } else {
+      pages.forEach(p => {
+        if (p.id === pageId) {
+          p.style.display = 'block';
+        } else {
+          p.style.display = 'none';
+        }
+      });
+    }
+  }
+
+  // Web Audio API ile ses bildirimi (Do-Mi-Sol akoru)
+  function playChime() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+      const notes = [523.25, 659.25, 783.99]; // Do, Mi, Sol
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + idx * 0.08);
+        osc.stop(ctx.currentTime + idx * 0.08 + 0.28);
+      });
+    } catch (e) {
+      console.warn("Chime error:", e);
+    }
+  }
+
+  function stopSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    isSpeaking = false;
+    document.querySelectorAll('.audio-badge-btn').forEach(btn => {
+      btn.innerHTML = '🔊 Dinle';
+      btn.classList.remove('playing');
+    });
+    const mainBtn = document.getElementById('voiceBtn');
+    if (mainBtn) {
+      mainBtn.innerHTML = '🔊 Sesli Oku';
+      mainBtn.style.background = '#10b981';
+    }
+  }
+
+  function speakPage(pageId, btnElement) {
+    playChime();
+
+    if (isSpeaking) {
+      stopSpeech();
+      return;
+    }
+
+    if (!('speechSynthesis' in window)) {
+      alert('Cihazınızda ses sentezleyici (TTS) bulunamadı.');
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.resume();
+
+    const targetPage = document.getElementById(pageId);
+    if (!targetPage) return;
+
+    // Temiz okunabilir metin çıkarımı
+    const clone = targetPage.cloneNode(true);
+    clone.querySelectorAll('.audio-badge-btn, .page-number-pill').forEach(el => el.remove());
+    let text = clone.innerText.replace(/[\n\r]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+    currentUtterance = new SpeechSynthesisUtterance(text);
+    currentUtterance.lang = 'tr-TR';
+    currentUtterance.rate = 0.93;
+    currentUtterance.pitch = 1.0;
+
+    const voices = window.speechSynthesis.getVoices();
+    const trVoice = voices.find(v => v.lang && (v.lang.startsWith('tr') || v.lang.startsWith('TR')));
+    if (trVoice) {
+      currentUtterance.voice = trVoice;
+    }
+
+    isSpeaking = true;
+    if (btnElement) {
+      btnElement.innerHTML = '⏹️ Durdur';
+      btnElement.classList.add('playing');
+    }
+    const mainBtn = document.getElementById('voiceBtn');
+    if (mainBtn) {
+      mainBtn.innerHTML = '⏹️ Durdur';
+      mainBtn.style.background = '#ef4444';
+    }
+
+    currentUtterance.onend = function() {
+      stopSpeech();
+    };
+
+    currentUtterance.onerror = function(e) {
+      console.warn("TTS error:", e);
+      stopSpeech();
+    };
+
+    window.speechSynthesis.speak(currentUtterance);
+  }
+
+  function toggleReadActivePage() {
+    if (isSpeaking) {
+      stopSpeech();
+      return;
+    }
+    if (currentFilteredPage && currentFilteredPage !== 'all') {
+      const btn = document.querySelector(`#${currentFilteredPage} .audio-badge-btn`);
+      speakPage(currentFilteredPage, btn);
+    } else {
+      const btn = document.querySelector('#page-1 .audio-badge-btn');
+      speakPage('page-1', btn);
+    }
+  }
+
+  // Ses motorunu hazırla
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
+  }
+</script>
+
+</body>
+</html>
+
